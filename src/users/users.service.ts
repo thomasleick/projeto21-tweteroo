@@ -9,4 +9,7 @@ export class UsersService {
     this.connectedUsers.push(user);
   }
 
+  getUserByUsername(username: string): User {
+    return this.connectedUsers.find(user => user.username === username);
+  }
 }
