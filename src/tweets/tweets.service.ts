@@ -1,23 +1,13 @@
 import { Injectable } from '@nestjs/common';
+import { User } from '../users/entities/user.entity';
+import { Tweet } from './entities/tweet.entity';
 
 @Injectable()
 export class TweetsService {
-  private connectedUsers = [];
-  private tweets = [];
+  private tweets: Tweet[] = [];
 
-  signUp(data: any) {
-    // Implement your logic here
+  createTweet(tweet: Tweet) {
+    this.tweets.push(tweet);
   }
 
-  createTweet(data: any, username: string) {
-    // Implement your logic here
-  }
-
-  getTweets(page: number) {
-    // Implement your logic here
-  }
-
-  getUserTweets(username: string) {
-    // Implement your logic here
-  }
 }
