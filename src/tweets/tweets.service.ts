@@ -8,4 +8,10 @@ export class TweetsService {
   createTweet(tweet: Tweet) {
     this.tweets.push(tweet);
   }
+
+  getLatestTweets(page: number = 1, tweetsPerPage: number = 15): Tweet[] {
+    const startIndex = (page - 1) * tweetsPerPage;
+    const endIndex = startIndex + tweetsPerPage;
+    return this.tweets.slice(startIndex, endIndex);
+  }
 }
