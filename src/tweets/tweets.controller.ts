@@ -1,4 +1,4 @@
-import { Controller, Post, Body, HttpStatus, HttpCode, UnauthorizedException, Get, Query, BadRequestException } from '@nestjs/common';
+import { Controller, Post, Body, HttpStatus, HttpCode, UnauthorizedException, Get, Query, BadRequestException, Param } from '@nestjs/common';
 import { TweetsService } from './tweets.service';
 import { Tweet } from './entities/tweet.entity';
 import { UsersService } from '../users/users.service';
@@ -35,6 +35,11 @@ export class TweetsController {
 
     const tweetsPerPage = 15;
     const tweets = this.tweetsService.getLatestTweets(page, tweetsPerPage);
+    return tweets;
+  }
+  @Get('/:username')
+  getTweetsByUsername(@Param('username') username: string) {
+    const tweets = this.tweetsService.getTweetsByUsername(username);
     return tweets;
   }
 }

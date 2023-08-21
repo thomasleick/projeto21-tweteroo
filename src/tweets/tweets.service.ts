@@ -6,7 +6,6 @@ export class TweetsService {
   private tweets: Tweet[] = [];
 
   createTweet(tweet: Tweet) {
-    console.log(tweet)
     this.tweets.push(tweet);
   }
 
@@ -22,4 +21,13 @@ export class TweetsService {
       tweet: tweet.tweet,
     }));
   }
+
+  getTweetsByUsername(username: string): any[] {
+  const userTweets = this.tweets.filter(tweet => tweet.user.username === username);
+  return userTweets.map(tweet => ({
+    username: tweet.user.username,
+    avatar: tweet.user.avatar,
+    tweet: tweet.tweet,
+  }));
+}
 }
