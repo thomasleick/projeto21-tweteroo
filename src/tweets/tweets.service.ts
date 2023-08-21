@@ -6,12 +6,20 @@ export class TweetsService {
   private tweets: Tweet[] = [];
 
   createTweet(tweet: Tweet) {
+    console.log(tweet)
     this.tweets.push(tweet);
   }
 
-  getLatestTweets(page: number = 1, tweetsPerPage: number = 15): Tweet[] {
+  getLatestTweets(page: number = 1, tweetsPerPage: number = 15): any[] {
     const startIndex = (page - 1) * tweetsPerPage;
     const endIndex = startIndex + tweetsPerPage;
-    return this.tweets.slice(startIndex, endIndex);
+
+    const tweets = this.tweets.slice(startIndex, endIndex);
+
+    return tweets.map(tweet => ({
+      username: tweet.user.username,
+      avatar: tweet.user.avatar,
+      tweet: tweet.tweet,
+    }));
   }
 }
